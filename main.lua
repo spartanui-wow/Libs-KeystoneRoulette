@@ -264,7 +264,8 @@ function KeystoneRoulette:OnInitialize()
 	LibStub('AceConfig-3.0'):RegisterOptionsTable('Libs-KeystoneRoulette', function()
 		return self.OptTable
 	end)
-	LibStub('AceConfigDialog-3.0'):AddToBlizOptions('Libs-KeystoneRoulette', "Lib's - Keystone Roulette")
+	local _, categoryID = LibStub('AceConfigDialog-3.0'):AddToBlizOptions('Libs-KeystoneRoulette', "Lib's - Keystone Roulette")
+	self.settingsCategoryID = categoryID
 
 	-- Create LibDataBroker object for minimap button
 	local ldbObject = LDB:NewDataObject('Libs-KeystoneRoulette', {
@@ -275,7 +276,9 @@ function KeystoneRoulette:OnInitialize()
 			if button == 'LeftButton' then
 				self:ToggleWheel()
 			elseif button == 'RightButton' then
-				Settings.OpenToCategory("Lib's - Keystone Roulette")
+				if self.settingsCategoryID then
+					Settings.OpenToCategory(self.settingsCategoryID)
+				end
 			end
 		end,
 		OnTooltipShow = function(tooltip)

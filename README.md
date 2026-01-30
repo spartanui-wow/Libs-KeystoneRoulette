@@ -4,8 +4,6 @@
 
 A fun spinning wheel that randomly picks a keystone from your party. No more arguments about whose key to push!
 
-![Keystone Icon](https://wow.zamimg.com/images/wow/icons/large/inv_relics_hourglass.jpg)
-
 ## How It Works
 
 1. Type `/ksr` to open the wheel

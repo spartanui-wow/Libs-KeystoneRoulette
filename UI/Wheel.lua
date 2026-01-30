@@ -128,6 +128,29 @@ function KeystoneRoulette:CreateWheelFrame()
 	end)
 	frame.spinButton = spinButton
 
+	-- Settings button (gear icon above result area)
+	local settingsButton = CreateFrame('Button', nil, frame)
+	settingsButton:SetSize(24, 24)
+	settingsButton:SetPoint('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -15, 85)
+	settingsButton:SetNormalAtlas('Warfronts-BaseMapIcons-Empty-Workshop-Minimap-small')
+	settingsButton:SetHighlightAtlas('Warfronts-BaseMapIcons-Alliance-Workshop-Minimap')
+	settingsButton:SetPushedAtlas('Warfronts-BaseMapIcons-Horde-Workshop-Minimap')
+	settingsButton:SetScript('OnClick', function()
+		-- Use the category ID stored during registration
+		if KeystoneRoulette.settingsCategoryID then
+			Settings.OpenToCategory(KeystoneRoulette.settingsCategoryID)
+		end
+	end)
+	settingsButton:SetScript('OnEnter', function(btn)
+		GameTooltip:SetOwner(btn, 'ANCHOR_RIGHT')
+		GameTooltip:AddLine('Settings')
+		GameTooltip:Show()
+	end)
+	settingsButton:SetScript('OnLeave', function()
+		GameTooltip:Hide()
+	end)
+	frame.settingsButton = settingsButton
+
 	-- Result display area
 	local resultFrame = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
 	resultFrame:SetSize(WINDOW_WIDTH - 20, 70)
