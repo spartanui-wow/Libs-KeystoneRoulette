@@ -1,0 +1,16 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Local settings
+.claude/

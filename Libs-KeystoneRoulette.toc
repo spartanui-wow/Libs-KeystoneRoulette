@@ -1,0 +1,39 @@
+## Interface: 110105
+## Title: Lib's - Keystone Roulette
+## Notes: A fun wheel-of-fortune style random keystone selector for M+ groups
+## IconTexture: Interface/Icons/inv_relics_hourglass
+## Version: @project-version@
+## Author: Wutname1
+## OptionalDeps: Libs-AddonTools
+## SavedVariables: LibsKeystoneRouletteDB
+## X-Curse-Project-ID: 0
+## X-Wago-ID: 0
+## X-Github: https://github.com/Wutname1/Libs-KeystoneRoulette
+## Category: Dungeons & Raids
+## Category-deDE: Dungeons & Schlachtzuege
+## Category-esES: Mazmorras y bandas
+## Category-esMX: Calabozos y bandas
+## Category-frFR: Donjons et raids
+## Category-itIT: Spedizioni e incursioni
+## Category-koKR: 던전 및 공격대
+## Category-ptBR: Masmorras e Raides
+## Category-ruRU: Подземелья и рейды
+## Category-zhCN: 地下城和团队副本
+## Category-zhTW: 地城與團隊
+
+# Libraries
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+libs\AceAddon-3.0\AceAddon-3.0.lua
+libs\AceDB-3.0\AceDB-3.0.lua
+libs\AceEvent-3.0\AceEvent-3.0.lua
+libs\AceTimer-3.0\AceTimer-3.0.lua
+libs\AceGUI-3.0\AceGUI-3.0.xml
+libs\AceConfig-3.0\AceConfig-3.0.xml
+libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+libs\LibOpenRaid\lib.xml
+
+# Core
+main.lua
+UI\Wheel.lua
