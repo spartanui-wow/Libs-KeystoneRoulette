@@ -4,6 +4,8 @@
 
 A fun spinning wheel that randomly picks a keystone from your party. No more arguments about whose key to push!
 
+![UI](https://media.forgecdn.net/attachments/1504/653/spun-png.png)
+
 ## How It Works
 
 1. Type `/ksr` to open the wheel
@@ -51,6 +53,5 @@ Based on the original [Keystone Wheel-Decide WeakAura](https://wago.io/xzvpUDanJ
 
 ## Links
 
-- [CurseForge](https://www.curseforge.com/wow/addons/libs-keystoneroulette)
-- [Wago](https://addons.wago.io/addons/libs-keystoneroulette)
+- [CurseForge](https://www.curseforge.com/wow/addons/libs-keystone-roulette)
 - [GitHub](https://github.com/Wutname1/Libs-KeystoneRoulette)
