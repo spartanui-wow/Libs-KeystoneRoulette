@@ -23,10 +23,10 @@ A fun spinning wheel that randomly picks a keystone from your party. No more arg
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `/ksr` | Open the wheel |
-| `/ksr options` | Open settings |
+| Command        | Description    |
+| -------------- | -------------- |
+| `/ksr`         | Open the wheel |
+| `/ksr options` | Open settings  |
 
 ## Options
 

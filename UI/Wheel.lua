@@ -415,9 +415,7 @@ function KeystoneRoulette:OnSpinComplete()
 		local classColor = C_ClassColor.GetClassColor(GetClassInfo(winner.classID))
 		local colorHex = classColor and classColor:GenerateHexColor() or 'ffffffff'
 
-		frame.resultText:SetText(
-			'|cffFFD700Winner:|r\n|c' .. colorHex .. winner.player .. '|r\n' .. winner.dungeonName .. ' +' .. winner.level
-		)
+		frame.resultText:SetText('|cffFFD700Winner:|r\n|c' .. colorHex .. winner.player .. '|r\n' .. winner.dungeonName .. ' +' .. winner.level)
 
 		-- Highlight winner frame
 		for i, ksFrame in ipairs(frame.keystoneFrames) do
