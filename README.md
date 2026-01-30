@@ -47,7 +47,7 @@ A: Yes! Type `/ksr test` to enable test mode with fake data.
 
 ## Credits
 
-Inspired by the original [Keystone Wheel-Decide WeakAura](https://wago.io/xzvpUDanJ) by Psyder.
+Based on the original [Keystone Wheel-Decide WeakAura](https://wago.io/xzvpUDanJ) by **Psyala**.
 
 ## Links
 
