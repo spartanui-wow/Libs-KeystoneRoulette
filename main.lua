@@ -35,7 +35,7 @@ KeystoneRoulette.DungeonAbbreviations = {
 	['The Dawnbreaker'] = 'DAWN',
 	['Mists of Tirna Scithe'] = 'MISTS',
 	['The Necrotic Wake'] = 'NW',
-	["Grim Batol"] = 'GB',
+	['Grim Batol'] = 'GB',
 	['Siege of Boralus'] = 'SOB',
 }
 
@@ -64,9 +64,44 @@ end
 ---@field rating number Player M+ rating
 ---@field tooltip string Full tooltip text
 
+-- Test mode flag (set via /ksr test)
+KeystoneRoulette.testMode = false
+
+---Generate fake keystone data for testing
+---@return KeystoneRoulette.KeystoneData[]
+function KeystoneRoulette:GetFakeKeystoneData()
+	local fakeData = {
+		{ player = 'Tankyboi', dungeonName = 'Priory of the Sacred Flame', level = 12, classID = 6 }, -- DK
+		{ player = 'Healzalot', dungeonName = 'Cinderbrew Meadery', level = 10, classID = 5 }, -- Priest
+		{ player = 'Stabsworth', dungeonName = 'Theater of Pain', level = 8, classID = 4 }, -- Rogue
+		{ player = 'Pewpewmage', dungeonName = 'Operation: Floodgate', level = 11, classID = 8 }, -- Mage
+		{ player = 'Naturebro', dungeonName = 'The Rookery', level = 9, classID = 11 }, -- Druid
+	}
+
+	local keystones = {}
+	for _, data in ipairs(fakeData) do
+		table.insert(keystones, {
+			player = data.player,
+			playerFull = data.player .. '-TestRealm',
+			dungeonName = data.dungeonName,
+			dungeonAbbrev = self:GetDungeonAbbreviation(data.dungeonName),
+			level = data.level,
+			classID = data.classID,
+			rating = math.random(1500, 3000),
+			tooltip = data.dungeonName .. ' +' .. data.level,
+		})
+	end
+
+	return keystones
+end
+
 ---Get keystone data for wheel display
 ---@return KeystoneRoulette.KeystoneData[]
 function KeystoneRoulette:GetKeystoneData()
+	-- Return fake data if test mode is enabled
+	if self.testMode then
+		return self:GetFakeKeystoneData()
+	end
 	local keystones = {}
 
 	-- Try LibOpenRaid first
@@ -244,7 +279,7 @@ function KeystoneRoulette:OnInitialize()
 			end
 		end,
 		OnTooltipShow = function(tooltip)
-			tooltip:AddLine('|cffFFFFFFLib\'s - Keystone Roulette|r')
+			tooltip:AddLine("|cffFFFFFFLib's - Keystone Roulette|r")
 			tooltip:AddLine(' ')
 			tooltip:AddLine('|cff00FF00Left Click:|r Open Roulette Wheel')
 			tooltip:AddLine('|cff00FF00Right Click:|r Open Options')
@@ -260,6 +295,17 @@ function KeystoneRoulette:OnInitialize()
 	SlashCmdList['KEYSTONEROULETTE'] = function(msg)
 		if msg == 'options' or msg == 'config' then
 			Settings.OpenToCategory("Lib's - Keystone Roulette")
+		elseif msg == 'test' then
+			self.testMode = not self.testMode
+			if self.testMode then
+				print('|cff00ff00Keystone Roulette:|r Test mode |cff00ff00ENABLED|r - using fake data')
+			else
+				print('|cff00ff00Keystone Roulette:|r Test mode |cffff0000DISABLED|r - using real data')
+			end
+			-- Refresh wheel if visible
+			if self.WheelFrame and self.WheelFrame:IsShown() then
+				self.WheelFrame:RefreshKeystones()
+			end
 		else
 			self:ToggleWheel()
 		end
@@ -330,7 +376,7 @@ function KeystoneRoulette:AnnounceWinner(keystone)
 
 	local chatType = IsInRaid() and 'RAID' or 'PARTY'
 	SendChatMessage('~~~~~~ KEYSTONE ROULETTE HAS SPOKEN! ~~~~~~', chatType)
-	SendChatMessage("It's time for " .. keystone.player .. " to warm up their key!", chatType)
+	SendChatMessage("It's time for " .. keystone.player .. ' to warm up their key!', chatType)
 	SendChatMessage(keystone.dungeonName .. ' +' .. keystone.level, chatType)
 	SendChatMessage('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', chatType)
 end
