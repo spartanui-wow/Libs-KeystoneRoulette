@@ -293,9 +293,9 @@ local function GetOptions()
 				set = function(_, value)
 					KeystoneRoulette.dbobj.profile.minimap.hide = not value
 					if value then
-						LDBIcon:Show('Libs-KeystoneRoulette')
+						LDBIcon:Show('Libs Keystone Roulette')
 					else
-						LDBIcon:Hide('Libs-KeystoneRoulette')
+						LDBIcon:Hide('Libs Keystone Roulette')
 					end
 				end,
 			},
@@ -328,7 +328,7 @@ function KeystoneRoulette:OnInitialize()
 	self.settingsCategoryID = categoryID
 
 	-- Create LibDataBroker object for minimap button
-	local ldbObject = LDB:NewDataObject('Libs-KeystoneRoulette', {
+	local ldbObject = LDB:NewDataObject('Libs Keystone Roulette', {
 		type = 'data source',
 		text = 'Keystone Roulette',
 		icon = 'Interface/Icons/inv_relics_hourglass',
@@ -350,7 +350,7 @@ function KeystoneRoulette:OnInitialize()
 	})
 
 	-- Register minimap icon
-	LDBIcon:Register('Libs-KeystoneRoulette', ldbObject, self.db.minimap)
+	LDBIcon:Register('Libs Keystone Roulette', ldbObject, self.db.minimap)
 
 	-- Register slash commands
 	SLASH_KEYSTONEROULETTE1 = '/ksr'

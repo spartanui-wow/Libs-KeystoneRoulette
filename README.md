@@ -54,4 +54,4 @@ Based on the original [Keystone Wheel-Decide WeakAura](https://wago.io/xzvpUDanJ
 ## Links
 
 - [CurseForge](https://www.curseforge.com/wow/addons/libs-keystone-roulette)
-- [GitHub](https://github.com/Wutname1/Libs-KeystoneRoulette)
+- [GitHub](https://github.com/spartanui-wow/Libs-KeystoneRoulette)
