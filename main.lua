@@ -2,6 +2,12 @@
 local KeystoneRoulette = LibStub('AceAddon-3.0'):NewAddon('Libs-KeystoneRoulette', 'AceEvent-3.0', 'AceTimer-3.0')
 local LDB = LibStub('LibDataBroker-1.1')
 local LDBIcon = LibStub('LibDBIcon-1.0')
+local LSM = LibStub('LibSharedMedia-3.0')
+
+-- Register addon sounds with LibSharedMedia
+LSM:Register('sound', 'KR: Brass Horn Fanfare', [[Interface\AddOns\Libs-KeystoneRoulette\sounds\brass-horn-fanfare.mp3]])
+LSM:Register('sound', 'KR: Arcade Game Victory', [[Interface\AddOns\Libs-KeystoneRoulette\sounds\arcade-game-victory.mp3]])
+LSM:Register('sound', 'KR: Meme Fail Alert', [[Interface\AddOns\Libs-KeystoneRoulette\sounds\meme-fail-alert.mp3]])
 
 -- Make addon globally accessible
 _G.KeystoneRoulette = KeystoneRoulette
@@ -276,6 +282,32 @@ local function GetOptions()
 				order = 12,
 				width = 'full',
 			},
+			soundHeader = {
+				type = 'header',
+				name = 'Sound',
+				order = 14,
+			},
+			soundEnabled = {
+				type = 'toggle',
+				name = 'Enable Sound',
+				desc = 'Play a sound when the wheel spins and when a winner is selected',
+				order = 15,
+				width = 'full',
+			},
+			soundName = {
+				type = 'select',
+				dialogControl = 'LSM30_Sound',
+				name = 'Sound',
+				desc = 'Sound to play for spin events',
+				order = 16,
+				width = 'double',
+				disabled = function()
+					return not KeystoneRoulette.db.soundEnabled
+				end,
+				values = function()
+					return LSM:HashTable('sound')
+				end,
+			},
 			minimapHeader = {
 				type = 'header',
 				name = 'Minimap Button',
@@ -308,6 +340,8 @@ function KeystoneRoulette:OnInitialize()
 	local databaseDefaults = {
 		spinDuration = 5,
 		announceWinner = true,
+		soundEnabled = true,
+		soundName = 'KR: Brass Horn Fanfare',
 		minimap = {
 			hide = false,
 		},

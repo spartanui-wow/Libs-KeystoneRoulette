@@ -1,5 +1,6 @@
 ---@type KeystoneRoulette
 local KeystoneRoulette = _G.KeystoneRoulette
+local LSM = LibStub('LibSharedMedia-3.0')
 
 -- Wheel constants
 local WHEEL_RADIUS = 65 -- Distance from center to keystone icons
@@ -20,6 +21,18 @@ local WINDOW_HEIGHT = 320
 ---@field spinButton Button
 ---@field resultFrame Frame
 ---@field resultText FontString
+
+---Play the configured wheel sound
+function KeystoneRoulette:PlayWheelSound()
+	if not self.db.soundEnabled then
+		return
+	end
+
+	local soundFile = LSM:Fetch('sound', self.db.soundName or 'None')
+	if soundFile and soundFile ~= 'None' then
+		PlaySoundFile(soundFile, 'Master')
+	end
+end
 
 ---Create the main wheel frame
 function KeystoneRoulette:CreateWheelFrame()
@@ -386,9 +399,6 @@ function KeystoneRoulette:StartSpin()
 	-- Update result text
 	frame.resultText:SetText('Spinning...')
 
-	-- Play sound
-	PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_APPEARANCE_CHANGE)
-
 	local winner = frame.keystoneData[frame.selectedIndex]
 	if self.logger then
 		self.logger.info('Spin started!')
@@ -471,7 +481,7 @@ function KeystoneRoulette:OnSpinComplete()
 		end
 
 		-- Play victory sound
-		PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_APPEARANCE_CHANGE)
+		self:PlayWheelSound()
 
 		-- Announce in party chat
 		self:AnnounceWinner(winner)
