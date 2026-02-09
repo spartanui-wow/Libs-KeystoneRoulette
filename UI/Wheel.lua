@@ -471,7 +471,7 @@ function KeystoneRoulette:OnSpinComplete()
 		end
 
 		-- Play victory sound
-		PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_ARTIFACT_CHANGE)
+		PlaySound(SOUNDKIT.UI_70_ARTIFACT_FORGE_APPEARANCE_APPEARANCE_CHANGE)
 
 		-- Announce in party chat
 		self:AnnounceWinner(winner)
