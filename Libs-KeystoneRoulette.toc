@@ -7,6 +7,7 @@
 ## OptionalDeps: Libs-AddonTools
 ## SavedVariables: LibsKeystoneRouletteDB
 ## X-Curse-Project-ID: 1449450
+## X-Wago-ID: 4N2kld6L
 ## X-Github: https://github.com/spartanui-wow/Libs-KeystoneRoulette
 ## Category: Dungeons & Raids
 ## Category-deDE: Dungeons & Schlachtzuege
