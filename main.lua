@@ -383,6 +383,14 @@ function KeystoneRoulette:OnInitialize()
 		end,
 	})
 
+	-- Smart default: hide minimap icon when Libs-DataBar is present (it shows LDB data already)
+	if not self.db.minimapDefaultApplied then
+		self.db.minimapDefaultApplied = true
+		if C_AddOns.IsAddOnLoaded('Libs-DataBar') then
+			self.db.minimap.hide = true
+		end
+	end
+
 	-- Register minimap icon
 	LDBIcon:Register('Libs Keystone Roulette', ldbObject, self.db.minimap)
 
