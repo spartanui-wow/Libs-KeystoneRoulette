@@ -20,7 +20,7 @@ debug = true
 
 -- Initialize logger if Libs-AddonTools is available
 if LibAT and LibAT.Logger and debug then
-	KeystoneRoulette.logger = LibAT.Logger.RegisterAddon('Libs-KeystoneRoulette')
+	KeystoneRoulette.logger = LibAT.Logger.RegisterAddon('Libs - Keystone Roulette')
 end
 
 ---@type table<string, string> Dungeon name to abbreviation mapping

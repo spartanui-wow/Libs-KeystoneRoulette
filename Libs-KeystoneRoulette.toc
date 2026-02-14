@@ -4,7 +4,7 @@
 ## IconTexture: Interface/Icons/inv_relics_hourglass
 ## Version: @project-version@
 ## Author: Wutname1
-## OptionalDeps: Libs-AddonTools
+## OptionalDeps: LibsAddonTools
 ## SavedVariables: LibsKeystoneRouletteDB
 ## X-Curse-Project-ID: 1449450
 ## X-Wago-ID: 4N2kld6L
