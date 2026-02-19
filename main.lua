@@ -381,6 +381,53 @@ function KeystoneRoulette:OnInitialize()
 			tooltip:AddLine('|cff00FF00Left Click:|r Open Roulette Wheel')
 			tooltip:AddLine('|cff00FF00Right Click:|r Open Options')
 		end,
+		GetOptions = function()
+			return {
+				type = 'group',
+				name = 'Keystone Roulette Settings',
+				args = {
+					spinDuration = {
+						type = 'range',
+						name = 'Spin Duration',
+						desc = 'How long the wheel should spin (in seconds)',
+						order = 1,
+						min = 1,
+						max = 30,
+						step = 1,
+						get = function()
+							return KeystoneRoulette.db.spinDuration
+						end,
+						set = function(_, val)
+							KeystoneRoulette.db.spinDuration = val
+						end,
+					},
+					announceWinner = {
+						type = 'toggle',
+						name = 'Announce Winner',
+						desc = 'Announce the selected keystone in party chat',
+						order = 2,
+						get = function()
+							return KeystoneRoulette.db.announceWinner
+						end,
+						set = function(_, val)
+							KeystoneRoulette.db.announceWinner = val
+						end,
+					},
+					soundEnabled = {
+						type = 'toggle',
+						name = 'Enable Sound',
+						desc = 'Play a sound when the wheel spins and when a winner is selected',
+						order = 3,
+						get = function()
+							return KeystoneRoulette.db.soundEnabled
+						end,
+						set = function(_, val)
+							KeystoneRoulette.db.soundEnabled = val
+						end,
+					},
+				},
+			}
+		end,
 	})
 
 	-- Smart default: hide minimap icon when Libs-DataBar is present (it shows LDB data already)
