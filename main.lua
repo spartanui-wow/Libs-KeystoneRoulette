@@ -347,6 +347,9 @@ function KeystoneRoulette:OnInitialize()
 		},
 	}
 
+	-- Before the database exists, so Setup can spot a new install
+	self:RegisterSetup()
+
 	-- Setup database
 	self.dbobj = LibStub('AceDB-3.0'):New('LibsKeystoneRouletteDB', { profile = databaseDefaults })
 	self.db = self.dbobj.profile ---@type KeystoneRoulette.DB
