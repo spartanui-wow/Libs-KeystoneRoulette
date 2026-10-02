@@ -39,5 +39,4 @@ libs\LibOpenRaid\lib.xml
 
 # Core
 main.lua
-Setup.lua
 UI\Wheel.lua
