@@ -232,8 +232,8 @@ function KeystoneRoulette:CreateKeystoneFrame(index)
 	frame:SetBackdropBorderColor(0, 0, 0, 1)
 
 	-- Player name (top)
-	local playerText = frame:CreateFontString(nil, 'OVERLAY')
-	playerText:SetFont('Fonts/ARIALN.TTF', 11, 'OUTLINE')
+	-- Font family so names in Cyrillic, Korean and Chinese still render
+	local playerText = frame:CreateFontString(nil, 'OVERLAY', 'SystemFont_Outline_Small')
 	playerText:SetPoint('TOP', frame, 'TOP', 0, 12)
 	playerText:SetTextColor(1, 1, 1, 1)
 	frame.playerText = playerText
@@ -322,9 +322,11 @@ function KeystoneRoulette:RefreshWheelKeystones()
 		ksFrame.dungeonText:SetText(keystone.dungeonAbbrev)
 
 		-- Set class color for player name
-		local classColor = C_ClassColor.GetClassColor(GetClassInfo(keystone.classID))
+		local classColor = C_ClassColor.GetClassColor(select(2, GetClassInfo(keystone.classID)))
 		if classColor then
 			ksFrame.playerText:SetTextColor(classColor.r, classColor.g, classColor.b, 1)
+		else
+			ksFrame.playerText:SetTextColor(1, 1, 1, 1)
 		end
 
 		ksFrame:Show()
@@ -466,7 +468,7 @@ function KeystoneRoulette:OnSpinComplete()
 	local winner = frame.keystoneData[frame.selectedIndex]
 	if winner then
 		-- Update result display
-		local classColor = C_ClassColor.GetClassColor(GetClassInfo(winner.classID))
+		local classColor = C_ClassColor.GetClassColor(select(2, GetClassInfo(winner.classID)))
 		local colorHex = classColor and classColor:GenerateHexColor() or 'ffffffff'
 
 		frame.resultText:SetText('|cffFFD700Winner:|r\n|c' .. colorHex .. winner.player .. '|r\n' .. winner.dungeonName .. ' +' .. winner.level)
